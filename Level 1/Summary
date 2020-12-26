@@ -1,9 +1,9 @@
 # Level 1 Summary
 
-1- Tokenizer.ipynb
+1- Tokenizer
 
-2- Padding and OOV.ipynb
+2- Padding and OOV
 
-3- Apply Tokenizer and Padding on Sarcasm dataset.ipynb
+3- Apply Tokenizer and Padding on Sarcasm dataset
 
-4- Text to Sequence on BBC dataset.ipynb
+4- Text to Sequence on BBC dataset
