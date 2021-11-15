@@ -14,7 +14,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn import metrics
 
-df_amazon = pd.read_excel(r'C:\Users\mayadi\Documents\Work\PWM\Code\New 11-2021\amazon_alexa.xlsx').head(500)
+df_amazon = pd.read_excel(r'\amazon_alexa.xlsx').head(500)
 X         = df_amazon['verified_reviews'] 
 ylabels   = df_amazon['feedback']
 
