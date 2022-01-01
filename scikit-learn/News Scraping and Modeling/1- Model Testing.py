@@ -35,19 +35,7 @@ from sklearn import metrics
 
 news = pd.read_excel()
 
-print('Number of empty cells: ', news['text'].isnull().sum())
-news['text'].replace('  ', np.nan, inplace=True)
-news = news.dropna(subset=['text'])
-
-print('Number of empty cells: ', news['text'].isnull().sum())
-print(news['usefull'].value_counts())
-news.head()
-
-news['usefull'] = news['usefull'].replace(['x', 'x '] , 1) # usefull (according to undisclosed criteria)
-news['usefull'] = news['usefull'].replace(np.nan, 0)       # non usefull  
-
-print(news['usefull'].value_counts())
-news.head()
+***
 
 X         = news['text'].astype(str) 
 ylabels   = news['usefull']
