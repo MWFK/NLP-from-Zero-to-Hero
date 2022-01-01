@@ -44,20 +44,6 @@ from joblib import dump, load
 
 ### Data
 news = pd.read_excel()
-print('Data shape: ', news.shape)
-
-print('Number of empty cells: ', news['text'].isnull().sum())
-news['text'].replace('  ', np.nan, inplace=True)
-
-news = news.dropna(subset=['text'])
-print('Data shape: ', news.shape)
-
-print('Number of empty cells: ', news['text'].isnull().sum())
-print(news['usefull'].value_counts())
-news.head()
-
-news['usefull'] = news['usefull'].replace(['x', 'x '] , 1) # usefull
-news['usefull'] = news['usefull'].replace(np.nan, 0)       # not usefull  
 
 news = news.sample(frac=1, axis=1).sample(frac=1).reset_index(drop=True)
 
