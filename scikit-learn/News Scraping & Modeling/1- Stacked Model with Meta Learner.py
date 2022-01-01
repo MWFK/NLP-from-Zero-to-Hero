@@ -43,7 +43,7 @@ from matplotlib import pyplot
 from joblib import dump, load
 
 ### Data
-news = pd.read_excel(r'C:\Users\mayadi\Documents\Work\PWM\Code\New 11-2021\news.xlsx')
+news = pd.read_excel()
 print('Data shape: ', news.shape)
 
 print('Number of empty cells: ', news['text'].isnull().sum())
@@ -168,14 +168,14 @@ X_test = tfidf_transformer.transform(X_test)
 %%time
 
 # Save Count Vectorizer after fiting with X_train
-dump(count_vect, r'C:\Users\mayadi\Documents\Work\PWM\Code\New 11-2021\12-2021\Results\countvect_v0.joblib') 
+dump(count_vect, r'\countvect_v0.joblib') 
 
 # Load the Count Vectorizer
 # cv_test = load(r'C:\Users\mayadi\Documents\Work\PWM\Code\New 11-2021\12-2021\Results\countvect_v0.joblib')
 # test = cv_test.transform(['mk is the best', 'hello mk'])
 # test = tfidf_transformer.transform(test)
 
-dump(tfidf_transformer, r'C:\Users\mayadi\Documents\Work\PWM\Code\New 11-2021\12-2021\Results\tfidftransformer_v0.joblib') 
+dump(tfidf_transformer, r'\tfidftransformer_v0.joblib') 
 
 ### Evaluating Models
 
@@ -208,7 +208,7 @@ text_clf  = get_stacking()
 model     = text_clf.fit(X_train, y_train)
 
 # Save model
-dump(model, r'C:\Users\mayadi\Documents\Work\PWM\Code\New 11-2021\12-2021\Results\model_v0.joblib') 
+dump(model, r'\model_v0.joblib') 
 
 # Load model
 #clf = load(r'C:\Users\mayadi\Documents\Work\PWM\Code\New 11-2021\12-2021\Results\model_v0.joblib')
@@ -226,13 +226,13 @@ cols = ['url', 'title', 'text', 'relevant', 'Prediction']
 news=news[cols]
 news.head()
 
-news.to_excel(r'C:\Users\mayadi\Documents\Work\PWM\Code\New 11-2021\12-2021\Results\Results.xlsx',  index=False)
+news.to_excel(r'\Results.xlsx',  index=False)
 
 from openpyxl import Workbook
 from openpyxl import load_workbook
 from openpyxl.styles import PatternFill
 
-wb = load_workbook(r'C:\Users\mayadi\Documents\Work\PWM\Code\New 11-2021\12-2021\Results\Results.xlsx')
+wb = load_workbook(r'\Results.xlsx')
 ws = wb.active
 
 redFill = PatternFill(start_color='FFFF0000', end_color='FFFF0000', fill_type='solid')
@@ -242,4 +242,4 @@ for row in range(len(news)):
         ws['E'+str(row+2)].fill = redFill
         print(row)
 
-wb.save(r'C:\Users\mayadi\Documents\Work\PWM\Code\New 11-2021\12-2021\Results\Results.xlsx')
+wb.save(r'\Results.xlsx')
