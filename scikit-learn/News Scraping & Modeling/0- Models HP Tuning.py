@@ -143,7 +143,7 @@ print("Recall   : {:0.4f}".format(metrics.recall_score   (y_test, predicted)))
 %%time
 
 X         = news['text'].astype(str) 
-ylabels   = news['relevant']
+ylabels   = news['usefull']
 X_train, X_test, y_train, y_test = train_test_split(X, ylabels, test_size=0.25, shuffle=True, stratify=ylabels)
 
 text_clf   = Pipeline([ ('vect'   , CountVectorizer()),
@@ -174,7 +174,7 @@ print("Recall   : {:0.4f}".format(metrics.recall_score   (y_test, predicted)))
 news = news.sample(frac=1, axis=1).sample(frac=1).reset_index(drop=True)
 
 X         = news['text'].astype(str).head(50)
-ylabels   = news['relevant'].astype(int).head(50)
+ylabels   = news['usefull'].astype(int).head(50)
 X_train, X_test, y_train, y_test = train_test_split(X, ylabels, test_size=0.25, shuffle=True, stratify=ylabels)
 
 count_vect = CountVectorizer(encoding='utf-8', decode_error='ignore', strip_accents='unicode', lowercase=True, analyzer='word', ngram_range=(2, 2), max_features=55000)# tokenizer = spacy_tokenizer  
@@ -210,7 +210,7 @@ print(grid.best_estimator_)
 news = news.sample(frac=1, axis=1).sample(frac=1).reset_index(drop=True)
 
 X         = news['text'].astype(str).head(50)
-ylabels   = news['relevant'].astype(int).head(50)
+ylabels   = news['usefull'].astype(int).head(50)
 X_train, X_test, y_train, y_test = train_test_split(X, ylabels, test_size=0.25, shuffle=True, stratify=ylabels)
 
 count_vect = CountVectorizer(encoding='utf-8', decode_error='ignore', strip_accents='unicode', lowercase=True, analyzer='word', ngram_range=(2, 2), max_features=55000)# tokenizer = spacy_tokenizer  
@@ -244,7 +244,7 @@ print(grid.best_estimator_)
 news = news.sample(frac=1, axis=1).sample(frac=1).reset_index(drop=True)
 
 X         = news['text'].astype(str).head(50)
-ylabels   = news['relevant'].astype(int).head(50)
+ylabels   = news['usefull'].astype(int).head(50)
 X_train, X_test, y_train, y_test = train_test_split(X, ylabels, test_size=0.25, shuffle=True, stratify=ylabels)
 
 count_vect = CountVectorizer(encoding='utf-8', decode_error='ignore', strip_accents='unicode', lowercase=True, analyzer='word', ngram_range=(2, 2), max_features=55000)# tokenizer = spacy_tokenizer  
