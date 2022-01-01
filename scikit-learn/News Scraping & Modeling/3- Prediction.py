@@ -22,24 +22,24 @@ from joblib import dump, load
 
 ### Data
 
-df = pd.read_pickle(r"C:\Users\mayadi\Documents\Work\PWM\Code\New 11-2021\12-2021\Data\news_new83.pkl")
+df = pd.read_pickle(r"\news_new83.pkl")
 print(len(df))
 # df[0]
 # df[0]['url']
 
 ### Classifier
 
-clf = load(r'C:\Users\mayadi\Documents\Work\PWM\Code\New 11-2021\12-2021\Results\model_v0.joblib')
+clf = load(r'\model_v0.joblib')
 
 ### Count_Vect
 
 # Load the Count Vectorizer
-count_vect = load(r'C:\Users\mayadi\Documents\Work\PWM\Code\New 11-2021\12-2021\Results\countvect_v0.joblib')
+count_vect = load(r'\countvect_v0.joblib')
 
 ### TFIDF Transformer
 
 # Load the TFIDF Transformer
-tfidf_transfomer = load(r'C:\Users\mayadi\Documents\Work\PWM\Code\New 11-2021\12-2021\Results\tfidftransformer_v0.joblib')
+tfidf_transfomer = load(r'\tfidftransformer_v0.joblib')
 
 ### Change Dictionnaire into DataFrame
 
@@ -80,4 +80,4 @@ predicted = clf.predict(texts)
 %%time
 
 df['Relevancy'] = predicted
-df.to_excel(r'C:\Users\mayadi\Documents\Work\PWM\Code\New 11-2021\12-2021\Results\New_Data_Classification.xlsx', index=False)
+df.to_excel(r'\New_Data_Classification.xlsx', index=False)
