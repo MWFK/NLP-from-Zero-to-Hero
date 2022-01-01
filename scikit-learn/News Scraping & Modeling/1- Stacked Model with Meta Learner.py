@@ -53,15 +53,15 @@ news = news.dropna(subset=['text'])
 print('Data shape: ', news.shape)
 
 print('Number of empty cells: ', news['text'].isnull().sum())
-print(news['relevant'].value_counts())
+print(news['usefull'].value_counts())
 news.head()
 
-news['relevant'] = news['relevant'].replace(['x', 'x '] , 1) # relevant
-news['relevant'] = news['relevant'].replace(np.nan, 0)       # non relevant  
+news['usefull'] = news['usefull'].replace(['x', 'x '] , 1) # usefull
+news['usefull'] = news['usefull'].replace(np.nan, 0)       # not usefull  
 
 news = news.sample(frac=1, axis=1).sample(frac=1).reset_index(drop=True)
 
-print(news['relevant'].value_counts())
+print(news['usefull'].value_counts())
 print('Data shape: ', news.shape)
 news.head()
 
@@ -151,7 +151,7 @@ def evaluate_model(model, X, y):
 %%time
 
 X         = news['text'].astype(str) 
-ylabels   = news['relevant'].astype(int) 
+ylabels   = news['usefull'].astype(int) 
 X_train, X_test, y_train, y_test = train_test_split(X, ylabels, test_size=0.25, shuffle=True, stratify=ylabels)
 
 count_vect = CountVectorizer(tokenizer=spacy_tokenizer, encoding='utf-8', decode_error='ignore', strip_accents='unicode', lowercase=True, analyzer='word', ngram_range=(2, 2), max_features=55000)# tokenizer = spacy_tokenizer  
@@ -171,7 +171,7 @@ X_test = tfidf_transformer.transform(X_test)
 dump(count_vect, r'\countvect_v0.joblib') 
 
 # Load the Count Vectorizer
-# cv_test = load(r'C:\Users\mayadi\Documents\Work\PWM\Code\New 11-2021\12-2021\Results\countvect_v0.joblib')
+# cv_test = load(r'\countvect_v0.joblib')
 # test = cv_test.transform(['mk is the best', 'hello mk'])
 # test = tfidf_transformer.transform(test)
 
@@ -211,18 +211,18 @@ model     = text_clf.fit(X_train, y_train)
 dump(model, r'\model_v0.joblib') 
 
 # Load model
-#clf = load(r'C:\Users\mayadi\Documents\Work\PWM\Code\New 11-2021\12-2021\Results\model_v0.joblib')
+#clf = load(r'\model_v0.joblib')
 
 %%time
 
-# Since we shuffle the data, this is the only way to get the text and it's predicted relevancy in order
+# Since we shuffle the data, this is the only way to get the text and it's predicted usefullness in order
 test = count_vect.transform(X)
 test = tfidf_transformer.transform(test)
 predicted = model.predict(test)
 
 news['Prediction'] = list(predicted)
-news['relevant']   = news['relevant'].astype(int)
-cols = ['url', 'title', 'text', 'relevant', 'Prediction']
+news['usefull']   = news['usefull'].astype(int)
+cols = ['url', 'title', 'text', 'usefull', 'Prediction']
 news=news[cols]
 news.head()
 
