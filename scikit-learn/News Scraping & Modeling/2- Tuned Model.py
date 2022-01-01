@@ -52,15 +52,15 @@ news = news.dropna(subset=['text'])
 print('Data shape: ', news.shape)
 
 print('Number of empty cells: ', news['text'].isnull().sum())
-print(news['relevant'].value_counts())
+print(news['usefull'].value_counts())
 news.head()
 
-news['relevant'] = news['relevant'].replace(['x', 'x '] , 1) # relevant
-news['relevant'] = news['relevant'].replace(np.nan, 0)       # non relevant  
+news['usefull'] = news['usefull'].replace(['x', 'x '] , 1) # usefull
+news['usefull'] = news['usefull'].replace(np.nan, 0)       # non usefull  
 
 news = news.sample(frac=1, axis=1).sample(frac=1).reset_index(drop=True)
 
-print(news['relevant'].value_counts())
+print(news['usefull'].value_counts())
 print('Data shape: ', news.shape)
 news.head()
 
@@ -147,7 +147,7 @@ def evaluate_model(model, X, y):
  %%time
 
 X         = news['text'].astype(str) 
-ylabels   = news['relevant'].astype(int) 
+ylabels   = news['usefull'].astype(int) 
 X_train, X_test, y_train, y_test = train_test_split(X, ylabels, test_size=0.25, shuffle=True, stratify=ylabels)
 
 count_vect = CountVectorizer(tokenizer=spacy_tokenizer, encoding='utf-8', decode_error='ignore', strip_accents='unicode', lowercase=True, analyzer='word', ngram_range=(2, 2), max_features=55000)# tokenizer = spacy_tokenizer  
