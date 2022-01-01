@@ -42,7 +42,7 @@ from matplotlib import pyplot
 
 ### Data
 
-news = pd.read_excel(r'C:\Users\mayadi\Documents\Work\PWM\Code\New 11-2021\news.xlsx')
+news = pd.read_excel()
 print('Data shape: ', news.shape)
 
 print('Number of empty cells: ', news['text'].isnull().sum())
