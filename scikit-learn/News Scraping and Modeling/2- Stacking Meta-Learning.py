@@ -45,6 +45,8 @@ from joblib import dump, load
 ### Data
 news = pd.read_excel()
 
+***
+
 news = news.sample(frac=1, axis=1).sample(frac=1).reset_index(drop=True)
 
 print(news['usefull'].value_counts())
