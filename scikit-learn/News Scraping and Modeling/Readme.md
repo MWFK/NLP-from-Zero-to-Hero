@@ -1,2 +1,3 @@
 ### Classification of News Articles to enrich the stock market data 
-Ongoing...
+
+Deutsch Business news scrapping and modeling.
